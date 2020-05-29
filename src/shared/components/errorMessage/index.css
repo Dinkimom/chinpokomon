@@ -1,0 +1,14 @@
+.header {
+  display: flex;
+  width: 300px;
+  text-align: center;
+  justify-content: center;
+  margin: 0 auto;
+  color: var(--font-color);
+  padding: 20px 0;
+}
+
+.header h1 {
+  width: auto;
+  margin: 0;
+}

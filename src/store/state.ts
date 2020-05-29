@@ -1,5 +1,5 @@
-import { IPokemonsState } from './../app/pokemons/state'
+import { IPokemonsState } from './../app/pokemons/state';
 
 export interface IRootState {
-  pokemons: IPokemonsState
+  pokemons: IPokemonsState;
 }

@@ -1,8 +1,8 @@
-import { applyMiddleware, compose, createStore } from "redux";
-import createSagaMiddleware from "redux-saga";
-import { rootSaga } from "../middleware/saga";
-import { rootReducer } from "./reducer";
-import { IRootState } from "./state";
+import { applyMiddleware, compose, createStore } from 'redux';
+import createSagaMiddleware from 'redux-saga';
+import { rootSaga } from '../middleware/saga';
+import { rootReducer } from './reducer';
+import { IRootState } from './state';
 
 export function configureStore(initialState?: IRootState) {
   const sagaMiddleware = createSagaMiddleware();

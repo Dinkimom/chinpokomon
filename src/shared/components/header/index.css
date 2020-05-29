@@ -1,0 +1,32 @@
+.header {
+  width: 200px;
+  position: relative;
+}
+
+.header span {
+  color: rgb(240, 196, 53);
+}
+
+.header img {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  animation-name: bouncing;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes bouncing {
+  0% {
+    top: 0;
+  }
+
+  50% {
+    top: 10px;
+  }
+
+  100% {
+    top: 0;
+  }
+}
