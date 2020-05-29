@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { ChangeEvent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ErrorMessage } from '../../shared/components/errorMessage';
 import { Loader } from '../../shared/components/loader';
@@ -6,11 +6,12 @@ import { PokemonDTO } from '../../shared/dto/PokemonDTO';
 import { IRootState } from '../../store/state';
 import { pokemonsActions } from './actions';
 import './index.css';
+import { Link } from 'react-router-dom';
 
 export const Pokemons = () => {
   const dispatch = useDispatch();
 
-  const { list, error, isFetching } = useSelector(
+  const { query, error, isFetching } = useSelector(
     (state: IRootState) => state.pokemons,
   );
 
@@ -18,19 +19,28 @@ export const Pokemons = () => {
     dispatch(pokemonsActions.loadData());
   }, [dispatch]);
 
+  const handleQueryChange = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch(pokemonsActions.setQuery(e.target.value));
+  };
+
   const renderList = () => {
     if (isFetching) return <Loader />;
 
-    if (list.length === 0) return <p>No data</p>;
+    if (query.length === 0)
+      return <p className='pokemons__content__no-data'>No data</p>;
 
-    return list.map((item: PokemonDTO, index) => (
-      <div className='pokemons__content__card'>
+    return query.map((item: PokemonDTO, index) => (
+      <Link
+        to={`/pokemon${item.id}`}
+        className='pokemons__content__card'
+        key={item.id}
+      >
         <p>{item.name}</p>
         <img
-          src={`https://pokeres.bastionbot.org/images/pokemon/${index + 1}.png`}
+          src={`https://pokeres.bastionbot.org/images/pokemon/${item.id}.png`}
           alt={item.name}
         />
-      </div>
+      </Link>
     ));
   };
 
@@ -40,26 +50,14 @@ export const Pokemons = () => {
 
   return (
     <div className='pokemons'>
-      <div className='pokemons__params'>
+      <div className='pokemons__query'>
         <input
           type='text'
-          className='pokemons__params__name'
           placeholder='Input name here...'
+          onChange={handleQueryChange}
         />
-        <button className='pokemons__params__search'>Search</button>
       </div>
       <div className='pokemons__content'>{renderList()}</div>
-      {/* <div className='pokemons__pagination'>
-        <label className='pokemons__pagination__items'>
-          Items{' '}
-          <select name='itemsPerPage'>
-            <option value='20'>20</option>
-            <option value='20'>40</option>
-            <option value='20'>80</option>
-            <option value='20'>120</option>
-          </select>
-        </label>
-      </div> */}
     </div>
   );
 };

@@ -30,6 +30,7 @@ export class PokemonsReducer implements IReducerPayloaded<IPokemonsState> {
     switch (action.type) {
       case types.POKEMONS_DATA_LOADED:
         newState.list = [...action.payload];
+        newState.query = [...action.payload];
         break;
       case types.POKEMONS_SET_FETCHING:
         newState.isFetching = action.payload;
@@ -37,12 +38,11 @@ export class PokemonsReducer implements IReducerPayloaded<IPokemonsState> {
       case types.POKEMONS_SET_QUERY_STRING:
         newState.queryString = action.payload;
         newState.query = newState.list.filter((item) =>
-          new RegExp(`$${newState.queryString}`).test(item.name),
+          new RegExp(`^${newState.queryString}`, 'i').test(item.name),
         );
         break;
     }
 
-    console.log(newState);
     return newState;
   }
 }

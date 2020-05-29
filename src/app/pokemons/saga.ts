@@ -1,3 +1,4 @@
+import { PokemonDTO } from './../../shared/dto/PokemonDTO';
 import { put, takeEvery } from 'redux-saga/effects';
 import { safeSagaExecute } from '../../middleware/saga';
 import { pokeClient } from './../../index';
@@ -27,7 +28,14 @@ export class PokemonsApiSaga {
     try {
       const response = yield pokeClient.getAll();
 
-      yield put(pokemonsActions.dataLoaded(response.data.results));
+      const list = response.data.results.map(
+        (item: PokemonDTO, index: number) => ({
+          ...item,
+          id: index + 1,
+        }),
+      );
+
+      yield put(pokemonsActions.dataLoaded(list));
     } catch (error) {
       yield put(pokemonsActions.setError(error.message));
     }
