@@ -22,7 +22,7 @@ export class PokemonsApiSaga {
     );
   }
 
-  public *loadData(action: IActionPayloaded<{ [key: string]: any }[]>) {
+  public *loadData() {
     yield put(pokemonsActions.setFetching(true));
 
     try {

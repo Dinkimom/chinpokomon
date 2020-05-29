@@ -12,7 +12,11 @@ export class PokeClient {
     });
   }
 
-  getAll = (): AxiosResponse<PokemonDTO> | string => {
+  getAll = (): AxiosResponse<PokemonDTO[]> | string => {
     return this.axios.get(`${this.URL}/pokemon?limit=20?`);
+  };
+
+  getPokemon = (id: number): AxiosResponse<PokemonDTO> | string => {
+    return this.axios.get(`${this.URL}/pokemon/${id}`);
   };
 }

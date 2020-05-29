@@ -5,6 +5,8 @@
   --primary-hovered-color: #75c5ba;
   --primary-active-color: #66b1a7;
   --font-color: #717171;
+  --box-shadow-color: rgba(0, 0, 0, 0.25);
+  --error-color: #fd7171;
 }
 
 body {

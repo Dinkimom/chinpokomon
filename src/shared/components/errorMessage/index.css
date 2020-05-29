@@ -1,14 +1,23 @@
-.header {
-  display: flex;
-  width: 300px;
-  text-align: center;
-  justify-content: center;
+.error-message {
+  width: auto;
   margin: 0 auto;
-  color: var(--font-color);
-  padding: 20px 0;
+  background: white;
+  border: 1px solid lightgrey;
+  box-shadow: 2px 2px 2px var(--box-shadow-color);
+  padding: 20px;
+  display: flex;
+  align-items: center;
 }
 
-.header h1 {
-  width: auto;
-  margin: 0;
+.error-message span {
+  padding: 5px;
+  width: 38px;
+  font-size: 1.5rem;
+  text-align: center;
+  box-sizing: border-box;
+  background: var(--error-color);
+  border-radius: 50%;
+  color: white;
+  font-weight: bold;
+  margin-right: 10px;
 }
