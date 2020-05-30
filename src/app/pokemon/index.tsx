@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { ErrorMessage } from '../../shared/components/errorMessage';
 import { Loader } from '../../shared/components/loader';
+import { PageWrapper } from '../../shared/components/pageWrapper';
 import { imagesEntryPoint } from '../../shared/constants/imagesEntryPoint';
 import { IRootState } from '../../store/state';
 import { pokemonActions } from './actions';
@@ -39,7 +40,7 @@ export const Pokemon = React.memo(() => {
   const renderAbilities = () =>
     record?.abilities.map((item, index) => (
       <Link
-        className='pokemon__content__info__abilities__ability link'
+        className='pokemon__info__abilities__ability link'
         to={`/ability/${item.ability.name}`}
         key={index}
       >
@@ -49,7 +50,7 @@ export const Pokemon = React.memo(() => {
 
   const renderTypes = () =>
     record?.types.map((item, index) => (
-      <span key={index} className='pokemon__content__info__types__type'>
+      <span key={index} className='pokemon__info__types__type'>
         {item.type.name}
       </span>
     ));
@@ -66,33 +67,27 @@ export const Pokemon = React.memo(() => {
     }
 
     return (
-      <div className='pokemon__container container'>
-        <Link to='/' className='pokemon__container__link link'>
-          &larr; Home
-        </Link>
-        <h2 className='pokemon__container__name'>{record?.name}</h2>
-        <div className='pokemon__content'>
-          <img
-            className='pokemon__container__image'
-            src={`${imagesEntryPoint}/${record?.id}.png`}
-            alt=''
-          />
-          <div className='pokemon__content__info'>
-            <div className='pokemon__content__info__stats'>
-              <h3>Stats</h3>
-              {renderStats()}
-            </div>
-            <div className='pokemon__content__info__types'>
-              <h3>Types</h3>
-              {renderTypes()}
-            </div>
-            <div className='pokemon__content__info__abilities'>
-              <h3>Abilities</h3>
-              {renderAbilities()}
-            </div>
+      <PageWrapper href='/' title={record?.name as string} className='pokemon'>
+        <img
+          className='pokemon__image'
+          src={`${imagesEntryPoint}/${record?.id}.png`}
+          alt=''
+        />
+        <div className='pokemon__info'>
+          <div className='pokemon__info__stats'>
+            <h3>Stats</h3>
+            {renderStats()}
+          </div>
+          <div className='pokemon__info__types'>
+            <h3>Types</h3>
+            {renderTypes()}
+          </div>
+          <div className='pokemon__info__abilities'>
+            <h3>Abilities</h3>
+            {renderAbilities()}
           </div>
         </div>
-      </div>
+      </PageWrapper>
     );
   };
 
