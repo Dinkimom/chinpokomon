@@ -1,4 +1,6 @@
 export interface TypeDTO {
-  id: number;
-  name: string;
+  slot: number;
+  type: {
+    name: string;
+  };
 }

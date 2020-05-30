@@ -7,6 +7,7 @@
   --font-color: #717171;
   --box-shadow-color: rgba(0, 0, 0, 0.25);
   --error-color: #fd7171;
+  --gray-color: rgb(231, 231, 231);
 }
 
 body {
@@ -25,4 +26,26 @@ body {
   height: 100vh;
   padding: 20px;
   box-sizing: border-box;
+}
+
+.container {
+  width: 90vw;
+  max-width: 600px;
+  height: calc(100vh - 150px);
+  background: white;
+  border-radius: 21px;
+  margin: 0 auto;
+  border: 1px solid lightgrey;
+  color: var(--font-color);
+  position: relative;
+}
+
+.link {
+  color: var(--primary-color);
+  transition: all 0.5s;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: var(--primary-hovered-color);
 }

@@ -1,5 +1,3 @@
-import { ErrorMessage } from './../../shared/components/errorMessage/index';
-import { PokemonDTO } from './../../shared/dto/PokemonDTO';
 import { put, takeEvery } from 'redux-saga/effects';
 import { safeSagaExecute } from '../../middleware/saga';
 import { pokeClient } from './../../index';
@@ -24,14 +22,14 @@ export class PokemonApiSaga {
   }
 
   public *loadData(action: IActionPayloaded<number>) {
+    yield put(pokemonActions.setError(''));
     yield put(pokemonActions.setFetching(true));
 
     try {
       const response = yield pokeClient.getPokemon(action.payload);
 
-      yield put(response.data.result);
+      yield put(pokemonActions.dataLoaded(response.data));
     } catch (error) {
-      console.log(error.message);
       yield put(pokemonActions.setError(error.message));
     }
 

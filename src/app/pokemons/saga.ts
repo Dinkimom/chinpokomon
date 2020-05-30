@@ -1,8 +1,7 @@
-import { PokemonDTO } from './../../shared/dto/PokemonDTO';
 import { put, takeEvery } from 'redux-saga/effects';
 import { safeSagaExecute } from '../../middleware/saga';
 import { pokeClient } from './../../index';
-import { IActionPayloaded } from './../../store/IAction';
+import { PokemonDTO } from './../../shared/dto/PokemonDTO';
 import { pokemonsActions } from './actions';
 import * as types from './types';
 
@@ -23,6 +22,7 @@ export class PokemonsApiSaga {
   }
 
   public *loadData() {
+    yield put(pokemonsActions.setError(''));
     yield put(pokemonsActions.setFetching(true));
 
     try {

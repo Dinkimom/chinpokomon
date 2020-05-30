@@ -1,3 +1,4 @@
+import { StatDTO } from './StatDTO';
 import { TypeDTO } from './TypeDTO';
 import { AbilityDTO } from './AbilityDTO';
 
@@ -8,5 +9,5 @@ export interface PokemonDTO {
   weight: number;
   abilities: AbilityDTO[];
   types: TypeDTO[];
-  stats: any[];
+  stats: StatDTO[];
 }

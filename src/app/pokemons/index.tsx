@@ -39,8 +39,12 @@ export const Pokemons = React.memo(() => {
         className='pokemons__content__card'
         key={item.id}
       >
-        <p>{item.name}</p>
-        <img src={`${imagesEntryPoint}/${item.id}.png`} alt={item.name} />
+        <p className='pokemons__content__card__name'>{item.name}</p>
+        <img
+          className='pokemons__content__card__image'
+          src={`${imagesEntryPoint}/${item.id}.png`}
+          alt={item.name}
+        />
       </Link>
     ));
   };
@@ -50,7 +54,7 @@ export const Pokemons = React.memo(() => {
   }
 
   return (
-    <div className='pokemons'>
+    <div className='pokemons container'>
       <div className='pokemons__query'>
         <input
           type='text'

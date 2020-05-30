@@ -1,0 +1,97 @@
+.pokemon__container__name {
+  text-transform: capitalize;
+  font-size: 2rem;
+  text-align: center;
+  margin: 0 0 10px 0;
+  padding: 10px 0;
+  border-radius: 20px 20px 0 0;
+  background: var(--gray-color);
+}
+
+.pokemon__container__image {
+  width: 40%;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+}
+
+.pokemon__container__link {
+  text-decoration: none;
+  font-size: 1.5rem;
+  position: absolute;
+  left: 20px;
+  top: 15px;
+}
+
+.pokemon__content {
+  height: calc(100% - 68px);
+  box-sizing: border-box;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.pokemon__content__info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+}
+
+.pokemon__content__info h3 {
+  font-size: 1.5rem;
+  margin: 5px 0;
+  font-weight: 400;
+}
+
+.pokemon__content__info__stats {
+  width: 100%;
+  text-align: center;
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.pokemon__content__info__stats table {
+  width: 100%;
+  border: 1px solid lightgrey;
+}
+
+@media screen and (max-width: 480px) {
+  .pokemon__content {
+    font-size: 12px;
+  }
+}
+
+.pokemon__content__info__stats table th {
+  background: var(--gray-color);
+}
+
+.pokemon__content__info__stats table td,
+.pokemon__content__info__stats table th {
+  padding: 5px;
+  text-transform: capitalize;
+}
+
+.pokemon__content__info__types,
+.pokemon__content__info__abilities {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.pokemon__content__info__types *,
+.pokemon__content__info__abilities * {
+  width: 100%;
+}
+
+.pokemon__content__info__types *:not(h3):nth-child(odd),
+.pokemon__content__info__abilities *:not(h3):nth-child(odd) {
+  background: rgb(245, 245, 245);
+}
+
+.pokemon__content__info__types__type,
+.pokemon__content__info__abilities__ability {
+  padding: 5px;
+  text-transform: capitalize;
+  box-sizing: border-box;
+}
