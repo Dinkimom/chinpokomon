@@ -9,6 +9,12 @@
   position: relative;
 }
 
+@media screen and (max-width: 480px) {
+  .header {
+    width: 250px;
+  }
+}
+
 .header h1 {
   width: auto;
   margin: 0;
