@@ -35,6 +35,9 @@ export class AbilityReducer implements IReducerPayloaded<IAbilityState> {
       case types.ABILITY_SET_ERROR:
         newState.error = action.payload;
         break;
+      case types.ABILITY_EXECUTE:
+        newState.record = null;
+        break;
     }
 
     return newState;

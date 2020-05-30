@@ -6,7 +6,7 @@ import { ErrorMessage } from '../errorMessage';
 
 interface IPageWrapperProps {
   href: string;
-  title: string;
+  title?: string;
   children: ReactNode;
   className?: string;
   isFetching: boolean;

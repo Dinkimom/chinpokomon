@@ -19,10 +19,6 @@ export const Ability = () => {
     dispatch(abilityActions.loadData(ability_name));
   }, [dispatch, ability_name]);
 
-  if (record === null) {
-    return null;
-  }
-
   return (
     <PageWrapper
       href={`/pokemon/${pokemon_id}`}

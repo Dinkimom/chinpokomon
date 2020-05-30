@@ -58,13 +58,7 @@ export const Pokemon = React.memo(() => {
     ));
 
   const renderRecord = () => (
-    <PageWrapper
-      href='/'
-      title={record?.name as string}
-      isFetching={isFetching}
-      error={error}
-      className='pokemon'
-    >
+    <>
       <img
         className='pokemon__image'
         src={`${imagesEntryPoint}/${record?.id}.png`}
@@ -84,12 +78,18 @@ export const Pokemon = React.memo(() => {
           {renderAbilities()}
         </div>
       </div>
-    </PageWrapper>
+    </>
   );
 
-  if (record === null) {
-    return null;
-  }
-
-  return <div className='pokemon'>{renderRecord()}</div>;
+  return (
+    <PageWrapper
+      href='/'
+      title={record?.name}
+      isFetching={isFetching}
+      error={error}
+      className='pokemon'
+    >
+      {renderRecord()}
+    </PageWrapper>
+  );
 });

@@ -1,4 +1,4 @@
-import { AbilityDTO } from './../../shared/dto/AbilityDTO';
+import { AbilityDTO } from '../../shared/dto/AbilityDTO';
 import * as types from './types';
 
 export const abilityActions = {
@@ -20,5 +20,9 @@ export const abilityActions = {
   setError: (payload: string) => ({
     type: types.ABILITY_SET_ERROR,
     payload,
+  }),
+
+  execute: () => ({
+    type: types.ABILITY_EXECUTE,
   }),
 };

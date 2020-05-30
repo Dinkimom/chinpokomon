@@ -24,6 +24,7 @@ export class PokemonApiSaga {
   public *loadData(action: IActionPayloaded<number>) {
     yield put(pokemonActions.setError(''));
     yield put(pokemonActions.setFetching(true));
+    yield put(pokemonActions.execute());
 
     try {
       const response = yield pokeClient.getPokemon(action.payload);

@@ -12,6 +12,10 @@ export const pokemonActions = {
     payload,
   }),
 
+  execute: () => ({
+    type: types.POKEMN_EXECUTE,
+  }),
+
   setFetching: (payload: boolean) => ({
     type: types.POKEMON_SET_FETCHING,
     payload,

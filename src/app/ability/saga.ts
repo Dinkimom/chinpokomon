@@ -24,6 +24,7 @@ export class AbilityApiSaga {
   public *loadData(action: IActionPayloaded<string>) {
     yield put(abilityActions.setError(''));
     yield put(abilityActions.setFetching(true));
+    yield put(abilityActions.execute());
 
     try {
       const response = yield pokeClient.getAbility(action.payload);

@@ -35,6 +35,9 @@ export class PokemonReducer implements IReducerPayloaded<IPokemonState> {
       case types.POKEMON_SET_ERROR:
         newState.error = action.payload;
         break;
+      case types.POKEMN_EXECUTE:
+        newState.record = null;
+        break;
     }
 
     return newState;
