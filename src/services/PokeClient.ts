@@ -1,3 +1,4 @@
+import { AbilityDTO } from './../shared/dto/AbilityDTO';
 import axios, { AxiosResponse } from 'axios';
 import { PokemonDTO } from './../shared/dto/PokemonDTO';
 
@@ -18,5 +19,9 @@ export class PokeClient {
 
   getPokemon = (id: number): AxiosResponse<PokemonDTO> | string => {
     return this.axios.get(`${this.URL}/pokemon/${id}`);
+  };
+
+  getAbility = (name: string): AxiosResponse<AbilityDTO> | string => {
+    return this.axios.get(`${this.URL}/ability/${name}`);
   };
 }
