@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
-import { ErrorMessage } from '../../shared/components/errorMessage';
-import { Loader } from '../../shared/components/loader';
 import { PageWrapper } from '../../shared/components/pageWrapper';
 import { imagesEntryPoint } from '../../shared/constants/imagesEntryPoint';
 import { IRootState } from '../../store/state';
@@ -24,16 +22,20 @@ export const Pokemon = React.memo(() => {
 
   const renderStats = () => (
     <table cellSpacing='0'>
-      <tr>
-        {record?.stats.map((item, index) => (
-          <th key={index}>{item.stat.name}</th>
-        ))}
-      </tr>
-      <tr>
-        {record?.stats.map((item, index) => (
-          <td key={index}>{item.base_stat}</td>
-        ))}
-      </tr>
+      <thead>
+        <tr>
+          {record?.stats.map((item, index) => (
+            <th key={index}>{item.stat.name}</th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          {record?.stats.map((item, index) => (
+            <td key={index}>{item.base_stat}</td>
+          ))}
+        </tr>
+      </tbody>
     </table>
   );
 
@@ -41,7 +43,7 @@ export const Pokemon = React.memo(() => {
     record?.abilities.map((item, index) => (
       <Link
         className='pokemon__info__abilities__ability link'
-        to={`/ability/${item.ability.name}`}
+        to={`/pokemon/${record.id}/ability/${item.ability.name}`}
         key={index}
       >
         {item.ability.name}
@@ -55,41 +57,39 @@ export const Pokemon = React.memo(() => {
       </span>
     ));
 
-  const renderRecord = () => {
-    if (isFetching) {
-      return <Loader />;
-    }
-
-    if (error) {
-      return (
-        <ErrorMessage error={error} link={<Link to='/'>Return Home</Link>} />
-      );
-    }
-
-    return (
-      <PageWrapper href='/' title={record?.name as string} className='pokemon'>
-        <img
-          className='pokemon__image'
-          src={`${imagesEntryPoint}/${record?.id}.png`}
-          alt=''
-        />
-        <div className='pokemon__info'>
-          <div className='pokemon__info__stats'>
-            <h3>Stats</h3>
-            {renderStats()}
-          </div>
-          <div className='pokemon__info__types'>
-            <h3>Types</h3>
-            {renderTypes()}
-          </div>
-          <div className='pokemon__info__abilities'>
-            <h3>Abilities</h3>
-            {renderAbilities()}
-          </div>
+  const renderRecord = () => (
+    <PageWrapper
+      href='/'
+      title={record?.name as string}
+      isFetching={isFetching}
+      error={error}
+      className='pokemon'
+    >
+      <img
+        className='pokemon__image'
+        src={`${imagesEntryPoint}/${record?.id}.png`}
+        alt=''
+      />
+      <div className='pokemon__info'>
+        <div className='pokemon__info__stats'>
+          <h3>Stats</h3>
+          {renderStats()}
         </div>
-      </PageWrapper>
-    );
-  };
+        <div className='pokemon__info__types'>
+          <h3>Types</h3>
+          {renderTypes()}
+        </div>
+        <div className='pokemon__info__abilities'>
+          <h3>Abilities</h3>
+          {renderAbilities()}
+        </div>
+      </div>
+    </PageWrapper>
+  );
+
+  if (record === null) {
+    return null;
+  }
 
   return <div className='pokemon'>{renderRecord()}</div>;
 });

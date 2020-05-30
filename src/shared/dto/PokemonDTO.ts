@@ -1,13 +1,13 @@
+import { ShortAbilityDTO } from './ShortAbilityDTO';
 import { StatDTO } from './StatDTO';
 import { TypeDTO } from './TypeDTO';
-import { AbilityDTO } from './AbilityDTO';
 
 export interface PokemonDTO {
   id: number;
   name: string;
   height: number;
   weight: number;
-  abilities: AbilityDTO[];
+  abilities: ShortAbilityDTO[];
   types: TypeDTO[];
   stats: StatDTO[];
 }

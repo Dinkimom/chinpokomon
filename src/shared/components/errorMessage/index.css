@@ -1,5 +1,6 @@
 .error-message {
-  width: auto;
+  width: 90%;
+  max-width: 700px;
   margin: 0 auto;
   background: white;
   border: 1px solid lightgrey;

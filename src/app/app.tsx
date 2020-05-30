@@ -4,6 +4,7 @@ import { Header } from '../shared/components/header';
 import { NotFound } from '../shared/components/notFound';
 import { Pokemon } from './pokemon';
 import { Pokemons } from './pokemons/';
+import { Ability } from './ability';
 
 export const App = () => {
   return (
@@ -13,6 +14,11 @@ export const App = () => {
         <Switch>
           <Route exact={true} path='/' component={Pokemons} />
           <Route exact={true} path='/pokemon/:id' component={Pokemon} />
+          <Route
+            exact={true}
+            path='/pokemon/:pokemon_id/ability/:ability_name'
+            component={Ability}
+          />
           <Route path='*' component={NotFound} />
         </Switch>
       </Router>

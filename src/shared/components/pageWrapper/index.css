@@ -16,7 +16,7 @@
   text-decoration: none;
   font-size: 2rem;
   position: absolute;
-  left: 10px;
+  left: 20px;
   top: 50%;
   transform: translateY(-50%);
 }
@@ -29,6 +29,10 @@
 }
 
 @media screen and (max-width: 480px) {
+  .container__header__link {
+    left: 10px;
+  }
+
   .content {
     padding: 10px;
   }

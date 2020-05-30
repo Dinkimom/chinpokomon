@@ -27,7 +27,7 @@ export class AbilityApiSaga {
 
     try {
       const response = yield pokeClient.getAbility(action.payload);
-      console.log(response);
+
       yield put(abilityActions.dataLoaded(response.data));
     } catch (error) {
       yield put(abilityActions.setError(error.message));
