@@ -33,7 +33,7 @@ export const Pokemons = React.memo(() => {
       return <p className='pokemons__content__no-data'>No data</p>;
     }
 
-    return query.map((item: PokemonDTO, index) => (
+    return query.map((item: PokemonDTO) => (
       <Link
         to={`/pokemon/${item.id}`}
         className='pokemons__content__card'
