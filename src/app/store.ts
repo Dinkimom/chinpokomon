@@ -1,9 +1,15 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
+import abilityReducer from '../features/ability/abilitySlice';
 import counterReducer from '../features/counter/counterSlice';
+import pokemonReducer from '../features/pokemon/pokemonSlice';
+import pokemonsReducer from '../features/pokemons/pokemonsSlice';
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
+    pokemons: pokemonsReducer,
+    pokemon: pokemonReducer,
+    ability: abilityReducer,
   },
 });
 
