@@ -12,7 +12,7 @@
 
 body {
   margin: 0;
-  padding: 0;
+
   font-family: 'Roboto', sans-serif;
 }
 
@@ -36,13 +36,14 @@ body {
 .container {
   width: 90vw;
   max-width: 600px;
-  height: calc(100vh - 150px);
+  min-height: calc(100vh - 150px);
   background: white;
   border-radius: 21px;
   margin: 0 auto;
   border: 1px solid lightgrey;
   color: var(--font-color);
   position: relative;
+  margin-bottom: 40px;
 }
 
 .link {

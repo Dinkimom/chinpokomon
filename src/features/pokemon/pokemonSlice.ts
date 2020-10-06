@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AxiosResponse } from 'axios';
 import { pokeClient } from './../../App';
 import { AppThunk } from './../../app/store';
 import { PokemonDTO } from './../../dtos/PokemonDTO';

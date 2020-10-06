@@ -20,7 +20,7 @@ export class PokeClient {
   }
 
   getAll = (limit: string, currentPage: string): AxiosResponse<PokemonsDTO> => {
-	const offset = Number(currentPage) * Number(limit);
+    const offset = (Number(currentPage) - 1) * Number(limit);
     return this.axios.get(`/pokemon?limit=${limit}?&offset=${offset}?`);
   };
 

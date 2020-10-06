@@ -6,6 +6,8 @@
   height: 100%;
   overflow-y: scroll;
   padding: 20px;
+  border-top: 1px solid var(--gray-color);
+  border-bottom: 1px solid var(--gray-color);
 }
 
 @media screen and (max-width: 480px) {
@@ -29,17 +31,18 @@
 
 .pokemons__content__card {
   padding: 10px;
-  border: 1px solid lightgrey;
+
   text-align: center;
   cursor: pointer;
   transition: all 0.5s;
   align-self: flex-start;
   text-decoration: none;
   color: var(--font-color);
+  align-self: stretch;
 }
 
-.pokemons__content__card:hover {
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+.pokemons__content__card:hover img {
+  filter: drop-shadow(5px 5px 5px lightgray);
 }
 
 .pokemons__content__card p {
@@ -54,19 +57,5 @@
 .pokemons__content__card img {
   width: 100%;
   height: auto;
-}
-
-.pokemons__pagination__items {
-  width: 100px;
-}
-
-.pokemons__pagination__items select {
-  height: 100%;
-  width: 50px;
-}
-
-.pokemons__pagination {
-  background: rgb(231, 231, 231);
-  height: 50px;
-  border-radius: 0 0 30px 30px;
+  transition: all 0.5s;
 }

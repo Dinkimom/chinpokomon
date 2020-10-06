@@ -22,13 +22,15 @@ export const Ability: React.FC = () => {
     dispatch(abilityFetch(ability_name));
   }, [dispatch, ability_name]);
 
-  const renderAbilities = useMemo(
+  const renderAbility = useMemo(
     () =>
-      record?.effect_entries.map((item, index) => (
-        <p className="ability__description" key={index}>
-          {item.effect}
-        </p>
-      )),
+      record?.effect_entries
+        .filter((item) => item.language.name === 'en')
+        .map((item, index) => (
+          <p className="ability__description" key={index}>
+            {item.effect}
+          </p>
+        )),
     [record]
   );
 
@@ -40,7 +42,7 @@ export const Ability: React.FC = () => {
       error={error}
       className="ability"
     >
-      {renderAbilities}
+      {renderAbility}
     </PageWrapper>
   );
 };

@@ -11,6 +11,7 @@ interface IPageWrapperProps {
   className?: string;
   isFetching: boolean;
   error: string | null;
+  linkCallback?: (...args: any) => void;
 }
 
 export const PageWrapper: React.FC<IPageWrapperProps> = ({
@@ -43,7 +44,7 @@ export const PageWrapper: React.FC<IPageWrapperProps> = ({
         <div className="content">{children}</div>
       </div>
     );
-  }, [isFetching, error, className, title, href, children]);
+  }, [isFetching, error]);
 
   return renderInner;
 };

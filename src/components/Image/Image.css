@@ -1,0 +1,12 @@
+.image {
+}
+
+.image.loading {
+  opacity: 0;
+}
+
+.image-skeleton {
+  min-width: 40px;
+  min-height: 40px;
+  background: var(--gray);
+}

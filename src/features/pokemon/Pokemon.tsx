@@ -1,6 +1,6 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { RootState } from '../../app/store';
 import { PageWrapper } from '../../components/PageWrapper/PageWrapper';
 import { imagesEntryPoint } from '../../constants/imagesEntryPoint';
@@ -15,6 +15,8 @@ export const Pokemon: React.FC = () => {
   const { record, isFetching, error } = useSelector(
     (state: RootState) => state.pokemon
   );
+
+  const location = useLocation();
 
   useEffect(() => {
     dispatch(pokemonFetch(id));
@@ -58,34 +60,46 @@ export const Pokemon: React.FC = () => {
         </span>
       ));
 
-    return (
-      <>
-        <img
-          className="pokemon__image"
-          src={`${imagesEntryPoint}/${record?.id}.png`}
-          alt=""
-        />
-        <div className="pokemon__info">
-          <div className="pokemon__info__stats">
-            <h3>Stats</h3>
-            {renderStats()}
+    if (record) {
+      return (
+        <>
+          <img
+            className="pokemon__image"
+            src={`${imagesEntryPoint}/${record?.id}.png`}
+            alt=""
+          />
+          <div className="pokemon__info">
+            <div className="pokemon__info__stats">
+              <h3>Stats</h3>
+              {renderStats()}
+            </div>
+            <div className="pokemon__info__types">
+              <h3>Types</h3>
+              {renderTypes()}
+            </div>
+            <div className="pokemon__info__abilities">
+              <h3>Abilities</h3>
+              {renderAbilities()}
+            </div>
           </div>
-          <div className="pokemon__info__types">
-            <h3>Types</h3>
-            {renderTypes()}
-          </div>
-          <div className="pokemon__info__abilities">
-            <h3>Abilities</h3>
-            {renderAbilities()}
-          </div>
-        </div>
-      </>
-    );
+        </>
+      );
+    }
+
+    return null;
   }, [record]);
+
+  const calculatePrevLink = useCallback(() => {
+    if (location?.state?.fromPokemons) {
+      return location.state.prev;
+    }
+
+    return '/';
+  }, [location]);
 
   return (
     <PageWrapper
-      href="/"
+      href={calculatePrevLink()}
       title={record?.name}
       isFetching={isFetching}
       error={error}
