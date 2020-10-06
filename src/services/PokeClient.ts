@@ -2,6 +2,7 @@ import axios, { AxiosError, AxiosResponse } from 'axios';
 import { serverEntryPoint } from '../constants/serverEntryPoint';
 import { AbilityDTO } from '../dtos/AbilityDTO';
 import { PokemonDTO } from '../dtos/PokemonDTO';
+import { PokemonsDTO } from './../dtos/PokemonsDTO';
 
 export class PokeClient {
   public axios: any;
@@ -18,15 +19,16 @@ export class PokeClient {
     );
   }
 
-  getAll = (): AxiosResponse<{ results: PokemonDTO[] }> | string => {
-    return this.axios.get('/pokemon?limit=20?');
+  getAll = (limit: string, currentPage: string): AxiosResponse<PokemonsDTO> => {
+	const offset = Number(currentPage) * Number(limit);
+    return this.axios.get(`/pokemon?limit=${limit}?&offset=${offset}?`);
   };
 
-  getPokemon = (id: string): AxiosResponse<PokemonDTO> | string => {
+  getPokemon = (id: string): AxiosResponse<PokemonDTO> => {
     return this.axios.get(`/pokemon/${id}`);
   };
 
-  getAbility = (name: string): AxiosResponse<AbilityDTO> | string => {
+  getAbility = (name: string): AxiosResponse<AbilityDTO> => {
     return this.axios.get(`/ability/${name}`);
   };
 

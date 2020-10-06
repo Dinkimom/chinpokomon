@@ -1,0 +1,28 @@
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.pagination__pages {
+	display: flex;
+	align-items: center;
+}
+
+.pagination__pages__link {
+	width: 30px;
+	text-align: center;
+}
+
+.pagination__controls {
+  width: 150px;
+}
+
+.pagination__controls select {
+  width: 100%;
+  padding: 5px 10px;
+  border-color: var(--gray-color);
+  color: var(--font-color);
+}

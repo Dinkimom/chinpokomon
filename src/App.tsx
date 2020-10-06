@@ -1,5 +1,10 @@
 import * as React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from 'react-router-dom';
 import { Header } from './components/Header/Header';
 import { NotFound } from './components/NotFound/NotFound';
 import { Ability } from './features/ability/Ability';
@@ -15,7 +20,12 @@ const App: React.FC = () => {
       <Router>
         <Header />
         <Switch>
-          <Route exact={true} path="/" component={Pokemons} />
+          <Route
+            exact={true}
+            path="/:limit&:currentPage?"
+            component={Pokemons}
+          />
+          <Route exact={true} path="/" render={() => <Redirect to="/50&1" />} />
           <Route exact={true} path="/pokemon/:id" component={Pokemon} />
           <Route
             exact={true}

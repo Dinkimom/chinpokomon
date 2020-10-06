@@ -1,8 +1,7 @@
-import { AxiosResponse } from 'axios';
-import { pokeClient } from './../../App';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AbilityDTO } from '../../dtos/AbilityDTO';
 import { AppThunk } from '../../app/store';
+import { AbilityDTO } from '../../dtos/AbilityDTO';
+import { pokeClient } from './../../App';
 
 interface AbilityState {
   record: AbilityDTO | null;
@@ -48,9 +47,7 @@ export const abilityFetch = (data: string): AppThunk => async (dispatch) => {
   try {
     dispatch(abilityFetchStart());
 
-    const response = (await pokeClient.getAbility(data)) as AxiosResponse<
-      AbilityDTO
-    >;
+    const response = await pokeClient.getAbility(data);
 
     dispatch(abilityFetchSuccess(response.data));
   } catch (error) {

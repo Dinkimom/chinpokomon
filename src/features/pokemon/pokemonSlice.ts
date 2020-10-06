@@ -47,9 +47,7 @@ export const pokemonFetch = (data: string): AppThunk => async (dispatch) => {
   try {
     dispatch(pokemonFetchStart());
 
-    const response = (await pokeClient.getPokemon(data)) as AxiosResponse<
-      PokemonDTO
-    >;
+    const response = await pokeClient.getPokemon(data);
 
     dispatch(pokemonFetchSuccess(response.data));
   } catch (error) {

@@ -1,9 +1,10 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { RootState } from '../../app/store';
 import { ErrorMessage } from '../../components/ErrorMessage/ErrorMessage';
 import { Loader } from '../../components/Loader/Loader';
+import { Pagination } from '../../components/Pagination/Pagination';
 import { imagesEntryPoint } from '../../constants/imagesEntryPoint';
 import { PokemonDTO } from '../../dtos/PokemonDTO';
 import './Pokemons.css';
@@ -12,13 +13,13 @@ import { pokemonsFetch } from './pokemonsSlice';
 export const Pokemons: React.FC = () => {
   const dispatch = useDispatch();
 
-  const { list, error, isFetching } = useSelector(
+  const { list, error, isFetching, count } = useSelector(
     (state: RootState) => state.pokemons
   );
 
-  useEffect(() => {
-    dispatch(pokemonsFetch());
-  }, [dispatch]);
+  const handleFetch = (limit: string, currentPage: string) => {
+    dispatch(pokemonsFetch(limit, currentPage));
+  };
 
   const renderInner = useMemo(() => {
     const renderList = () => {
@@ -32,7 +33,11 @@ export const Pokemons: React.FC = () => {
 
       return list.map((item: PokemonDTO, index) => {
         // poke api doesn't contain id property for pokemon dto :(
-        const id = ++index;
+        // so we can rely only on url, because the end of it contains id!
+        let match = (item.url.match(/\d+\/$/) || [])[0];
+        match = match.replace('/', '');
+
+        const id = Number(match);
 
         return (
           <Link
@@ -57,10 +62,11 @@ export const Pokemons: React.FC = () => {
 
     return (
       <div className="pokemons container">
+        <Pagination count={count} onLoad={handleFetch} />
         <div className="pokemons__content">{renderList()}</div>
       </div>
     );
-  }, [list, error, isFetching]);
+  }, [list, error, isFetching, count]);
 
   return renderInner;
 };

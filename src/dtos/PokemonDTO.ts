@@ -4,6 +4,7 @@ import { TypeDTO } from './TypeDTO';
 
 export interface PokemonDTO {
   id: number;
+  url: string;
   name: string;
   height: number;
   weight: number;
