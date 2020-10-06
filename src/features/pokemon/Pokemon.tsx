@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { RootState } from '../../app/store';
+import { Image } from '../../components/Image/Image';
 import { PageWrapper } from '../../components/PageWrapper/PageWrapper';
 import { imagesEntryPoint } from '../../constants/imagesEntryPoint';
 import './Pokemon.css';
@@ -63,10 +64,10 @@ export const Pokemon: React.FC = () => {
     if (record) {
       return (
         <>
-          <img
+          <Image
             className="pokemon__image"
             src={`${imagesEntryPoint}/${record?.id}.png`}
-            alt=""
+            alt={record.name}
           />
           <div className="pokemon__info">
             <div className="pokemon__info__stats">

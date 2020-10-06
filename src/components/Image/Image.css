@@ -1,6 +1,3 @@
-.image {
-}
-
 .image.loading {
   opacity: 0;
 }
@@ -9,4 +6,9 @@
   min-width: 40px;
   min-height: 40px;
   background: var(--gray);
+  
+}
+
+.image--no-image {
+	text-align: center;
 }

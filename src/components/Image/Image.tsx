@@ -26,7 +26,7 @@ export const Image: React.FC<DetailedHTMLProps<
 
   const renderInner = useMemo(() => {
     if (error) {
-      return <span>No image</span>;
+      return <span className="image--no-image">No image</span>;
     }
 
     return (
