@@ -34,16 +34,24 @@ export class PokeClient {
 
   handleError = (error: AxiosError) => {
     if (error.response) {
-      console.log(error.response.data);
-      console.log(error.response.status);
-      console.log(error.response.headers);
-      throw new Error(error.response.data.error);
+      return this.handleErrorResponse(error.response);
     } else if (error.request) {
       console.log(error.request);
       throw new Error('No response from the server');
     } else {
       console.log('Error', error.message);
       throw new Error(error.message);
+    }
+  };
+
+  handleErrorResponse = (response: AxiosResponse) => {
+    switch (response.status) {
+      case 404:
+        window.location.href = '/not-found';
+        break;
+
+      default:
+        return new Error(response.data.error);
     }
   };
 }

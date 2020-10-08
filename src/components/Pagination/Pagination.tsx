@@ -30,6 +30,10 @@ export const Pagination = withRouter(({ count, history }: any) => {
     [paginationLimit, history]
   );
 
+  useEffect(() => {
+    setPaginationLimit(limit);
+  }, [limit]);
+
   const renderInner = useMemo(() => {
     const pagesCount = Math.floor(count / Number(limit) - 1);
     const pages = paginator(currentPage, pagesCount);
