@@ -24,6 +24,8 @@
   text-align: center;
   grid-column-start: 1;
   grid-column-end: 3;
+  margin-top: 20px;
+  font-size: 1.2rem;
 }
 
 .pokemon__info__stats table {
@@ -46,6 +48,7 @@
   display: flex;
   flex-direction: column;
   text-align: center;
+  font-size: 1.4rem;
 }
 
 .pokemon__info__types *,

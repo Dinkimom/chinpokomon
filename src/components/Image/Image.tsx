@@ -6,6 +6,7 @@ import React, {
   useState,
 } from 'react';
 import './Image.css';
+import noImage from './no-image.png';
 
 export const Image: React.FC<DetailedHTMLProps<
   ImgHTMLAttributes<HTMLImageElement>,
@@ -26,7 +27,7 @@ export const Image: React.FC<DetailedHTMLProps<
 
   const renderInner = useMemo(() => {
     if (error) {
-      return <span className="image--no-image">No image</span>;
+      return <img className="image--no-image" src={noImage} />;
     }
 
     return (

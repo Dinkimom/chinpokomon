@@ -1,6 +1,6 @@
 .pokemons__content {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-row-gap: 10px;
   grid-column-gap: 10px;
   height: 100%;
@@ -8,6 +8,12 @@
   padding: 20px;
   border-top: 1px solid var(--gray-color);
   border-bottom: 1px solid var(--gray-color);
+}
+
+@media screen and (max-width: 720px) {
+  .pokemons__content {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -58,4 +64,5 @@
   width: 100%;
   height: auto;
   transition: all 0.5s;
+  min-height: 187.5px;
 }

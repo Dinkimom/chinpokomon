@@ -35,7 +35,7 @@ body {
 
 .container {
   width: 90vw;
-  max-width: 600px;
+  max-width: 900px;
   min-height: calc(100vh - 150px);
   background: white;
   border-radius: 21px;

@@ -5,6 +5,7 @@ import { RootState } from '../../app/store';
 import { Image } from '../../components/Image/Image';
 import { PageWrapper } from '../../components/PageWrapper/PageWrapper';
 import { imagesEntryPoint } from '../../constants/imagesEntryPoint';
+import { PokemonTypesEnum } from '../../enums/PokemonTypesEnum';
 import './Pokemon.css';
 import { pokemonFetch } from './pokemonSlice';
 
@@ -56,7 +57,11 @@ export const Pokemon: React.FC = () => {
 
     const renderTypes = () =>
       record?.types.map((item, index) => (
-        <span key={index} className="pokemon__info__types__type">
+        <span
+          key={index}
+          className="pokemon__info__types__type"
+          style={{ color: PokemonTypesEnum[item.type.name] }}
+        >
           {item.type.name}
         </span>
       ));
@@ -70,10 +75,7 @@ export const Pokemon: React.FC = () => {
             alt={record.name}
           />
           <div className="pokemon__info">
-            <div className="pokemon__info__stats">
-              <h3>Stats</h3>
-              {renderStats()}
-            </div>
+            <div className="pokemon__info__stats">{renderStats()}</div>
             <div className="pokemon__info__types">
               <h3>Types</h3>
               {renderTypes()}
