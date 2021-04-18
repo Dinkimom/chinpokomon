@@ -1,27 +1,57 @@
-import { AbilityDTO } from './../shared/dto/AbilityDTO';
-import axios, { AxiosResponse } from 'axios';
-import { PokemonDTO } from './../shared/dto/PokemonDTO';
+import axios, { AxiosError, AxiosResponse } from 'axios';
+import { serverEntryPoint } from '../constants/serverEntryPoint';
+import { AbilityDTO } from '../dtos/AbilityDTO';
+import { PokemonDTO } from '../dtos/PokemonDTO';
+import { PokemonsDTO } from './../dtos/PokemonsDTO';
 
 export class PokeClient {
-  public URL: string;
   public axios: any;
 
-  public constructor(serverEntryPoint: string) {
-    this.URL = serverEntryPoint;
+  public constructor() {
     this.axios = axios.create({
+      baseURL: serverEntryPoint,
       timeout: 20000,
     });
+
+    this.axios.interceptors.response.use(
+      (res: AxiosResponse) => res,
+      this.handleError
+    );
   }
 
-  getAll = (): AxiosResponse<PokemonDTO[]> | string => {
-    return this.axios.get(`${this.URL}/pokemon?limit=20?`);
+  getAll = (limit: string, currentPage: string): AxiosResponse<PokemonsDTO> => {
+    const offset = (Number(currentPage) - 1) * Number(limit);
+    return this.axios.get(`/pokemon?limit=${limit}?&offset=${offset}?`);
   };
 
-  getPokemon = (id: number): AxiosResponse<PokemonDTO> | string => {
-    return this.axios.get(`${this.URL}/pokemon/${id}`);
+  getPokemon = (id: string): AxiosResponse<PokemonDTO> => {
+    return this.axios.get(`/pokemon/${id}`);
   };
 
-  getAbility = (name: string): AxiosResponse<AbilityDTO> | string => {
-    return this.axios.get(`${this.URL}/ability/${name}`);
+  getAbility = (name: string): AxiosResponse<AbilityDTO> => {
+    return this.axios.get(`/ability/${name}`);
+  };
+
+  handleError = (error: AxiosError) => {
+    if (error.response) {
+      return this.handleErrorResponse(error.response);
+    } else if (error.request) {
+      console.log(error.request);
+      throw new Error('No response from the server');
+    } else {
+      console.log('Error', error.message);
+      throw new Error(error.message);
+    }
+  };
+
+  handleErrorResponse = (response: AxiosResponse) => {
+    switch (response.status) {
+      case 404:
+        window.location.href = '/not-found';
+        break;
+
+      default:
+        return new Error(response.data.error);
+    }
   };
 }
