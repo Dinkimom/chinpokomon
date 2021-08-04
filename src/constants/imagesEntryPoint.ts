@@ -1,1 +1,1 @@
-export const imagesEntryPoint = 'https://pokeres.bastionbot.org/images/pokemon';
+export const imagesEntryPoint = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon';
